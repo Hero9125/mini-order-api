@@ -71,21 +71,24 @@ Key environment variables to configure in your `.env` file:
 ```env
 # Database configuration
 DB_CONNECTION=mysql
-DB_HOST=db             # Use '127.0.0.1' for local non-Docker setup
+DB_HOST=db
 DB_PORT=3306
 DB_DATABASE=mini_order_api
 DB_USERNAME=mini_order
 DB_PASSWORD=secret
 
-# Redis Cache and Queue configuration
+# Redis Cache configuration
 CACHE_DRIVER=redis
-QUEUE_CONNECTION=database # Database queue used for simplicity
 REDIS_CLIENT=predis
-REDIS_HOST=redis       # Use '127.0.0.1' for local non-Docker setup
+REDIS_HOST=redis
+REDIS_PORT=6379
 
-# Mail configuration (Mailhog)
+# Queue configuration
+QUEUE_CONNECTION=database
+
+# Mail configuration (MailHog)
 MAIL_MAILER=smtp
-MAIL_HOST=mailhog      # Use '127.0.0.1' for local non-Docker setup
+MAIL_HOST=mailhog
 MAIL_PORT=1025
 ```
 
