@@ -22,6 +22,17 @@ class StoreOrderRequest extends FormRequest
         ];
     }
 
+    public function withValidator(\Illuminate\Contracts\Validation\Validator $validator): void
+    {
+        $validator->after(function ($validator) {
+            $items = $this->input('items', []);
+            $ids = array_column($items, 'product_id');
+            if (count($ids) !== count(array_unique($ids))) {
+                $validator->errors()->add('items', 'Duplicate product IDs are not allowed in a single order.');
+            }
+        });
+    }
+
     public function messages(): array
     {
         return [

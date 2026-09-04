@@ -98,7 +98,7 @@ class OrderService
         }); // ← transaction commits here
 
         // Dispatch post-order job only after successful commit.
-        ProcessOrderJob::dispatch($order);
+        ProcessOrderJob::dispatch($order)->afterCommit();
 
         return $order->load(['items.product', 'user']);
     }
